@@ -41,7 +41,7 @@ export class TransactionService {
         throw new BadRequestException('Insufficient balance');
       }
 
-      fromUser.balance = (parseFloat(fromUser.balance) - amount).toFixed(2);
+      fromUser.balance = (parseFloat(fromUser.balance) - amount - (amount * 0.001)).toFixed(2);
       toUser.balance = (parseFloat(toUser.balance) + amount).toFixed(2);
 
       const transaction = this.transactionRepo.create({
